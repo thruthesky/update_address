@@ -45,8 +45,24 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ElevatedButton(
               onPressed: () async {
-                re = await findAddress(context, "7c567f8e9e57ffa08531df5aa9efebb5",
-                    "U01TX0FVVEgyMDIzMTExODE5MjMzMDExNDI4ODc=");
+                re = await findAddress(
+                  context,
+                  kakaoApiKey: "7c567f8e9e57ffa08531df5aa9efebb5",
+                  dataApiKey: "U01TX0FVVEgyMDIzMTExODE5MjMzMDExNDI4ODc=",
+                  themeData: Theme.of(context).copyWith(
+                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+                    textTheme: Theme.of(context).textTheme.copyWith(
+                          titleMedium: const TextStyle(color: Colors.red),
+                          labelMedium: const TextStyle(color: Colors.blue),
+                        ),
+                    inputDecorationTheme: InputDecorationTheme(
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                      isDense: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    ),
+                    useMaterial3: true,
+                  ),
+                );
                 print(re);
                 setState(() {});
               },

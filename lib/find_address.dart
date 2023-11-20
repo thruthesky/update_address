@@ -39,18 +39,21 @@ typedef Address = ({
 });
 
 Future<Map<String, dynamic>?> findAddress(
-  BuildContext context,
-  String kakaoApiKey,
-  String dataApiKey,
-) async {
+  BuildContext context, {
+  required String kakaoApiKey,
+  required String dataApiKey,
+  ThemeData? themeData,
+}) async {
   // Add your function code here!
 
   final Address? addr = await showDialog(
     context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('주소 찾기'),
-      content: SearchAddress(
-        dataApiKey: dataApiKey,
+    builder: (context) => Theme(
+      data: themeData ?? Theme.of(context),
+      child: AlertDialog(
+        content: SearchAddress(
+          dataApiKey: dataApiKey,
+        ),
       ),
     ),
   );
@@ -150,40 +153,74 @@ class _SearchAddressState extends State<SearchAddress> {
     return address;
   }
 
+  double get width =>
+      MediaQuery.of(context).size.width * 0.8 > 300 ? 300 : MediaQuery.of(context).size.width * 0.8;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text('찾고자 하는 주소의 일부분을 입력하세요.\n예) 김해시 대성아파트'),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: search,
-                  decoration: const InputDecoration(
-                    hintText: 'Address',
-                    border: OutlineInputBorder(),
-                    isDense: true,
+      child: SizedBox(
+        width: width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('주소 찾기', style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 8),
+            const Text('찾고자 하는 주소의 일부분을 입력하세요.\n예) 김해시 대성아파트'),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: search,
+                    decoration: const InputDecoration(
+                      hintText: '주소 입력',
+                    ),
+                    onSubmitted: searchAddress,
                   ),
-                  onSubmitted: searchAddress,
                 ),
-              ),
-              const SizedBox(width: 8),
-              ElevatedButton(onPressed: searchAddress, child: const Text("검색")),
-            ],
-          ),
-          ...address.map(
-            (e) => ListTile(
-              title: Text(e.roadAddr),
-              subtitle: Text(e.jibunAddr),
-              onTap: () async {
-                Navigator.pop(context, e);
-              },
+                const SizedBox(width: 8),
+                ElevatedButton(onPressed: searchAddress, child: const Text("검색")),
+              ],
             ),
-          ),
-        ],
+            const SizedBox(height: 16),
+            if (address.isNotEmpty)
+              ...address
+                  .map(
+                    (e) => InkWell(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(e.roadAddr.trim(), style: Theme.of(context).textTheme.titleMedium),
+                          Text(
+                            e.jibunAddr.trim(),
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
+                          Text(
+                            '[선택]',
+                            style: Theme.of(context).textTheme.labelMedium,
+                          )
+                        ],
+                      ),
+                      onTap: () async {
+                        Navigator.pop(context, e);
+                      },
+                    ),
+                  )
+                  .toList()
+                  .fold<List<Widget>>(
+                [],
+                (previousValue, element) => previousValue
+                  ..add(element)
+                  ..add(
+                    const Divider(
+                      height: 24,
+                    ),
+                  ),
+              )..removeLast(),
+          ],
+        ),
       ),
     );
   }
