@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* 첫번째 배포입니다. 새창을 띄우고 주소를 검색 할 수 있는 기능을 제공합니다.
