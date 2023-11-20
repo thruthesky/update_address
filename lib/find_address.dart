@@ -72,8 +72,10 @@ Future<Map<String, dynamic>?> findAddress(
   };
 }
 
-Future<({double lat, double lng})?> getLatLon(String kakaoApiKey, String addr) async {
-  String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json?query=$addr";
+Future<({double lat, double lng})?> getLatLon(
+    String kakaoApiKey, String addr) async {
+  String apiUrl =
+      "https://dapi.kakao.com/v2/local/search/address.json?query=$addr";
   final http.Response res = await http.get(
     Uri.parse(apiUrl),
     headers: {"Authorization": "KakaoAK $kakaoApiKey"},
@@ -107,7 +109,8 @@ class _SearchAddressState extends State<SearchAddress> {
   parseAddress(Map<String, dynamic> re) {
     List<Address> address = [];
 
-    final totalCount = int.parse(re['results']['common']['totalCount'].toString());
+    final totalCount =
+        int.parse(re['results']['common']['totalCount'].toString());
     for (int i = 0; i < totalCount; i++) {
       // the maximum you can get from a call is 100.
       if (i >= 100) break;
@@ -153,8 +156,9 @@ class _SearchAddressState extends State<SearchAddress> {
     return address;
   }
 
-  double get width =>
-      MediaQuery.of(context).size.width * 0.8 > 300 ? 300 : MediaQuery.of(context).size.width * 0.8;
+  double get width => MediaQuery.of(context).size.width * 0.8 > 300
+      ? 300
+      : MediaQuery.of(context).size.width * 0.8;
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +185,8 @@ class _SearchAddressState extends State<SearchAddress> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                ElevatedButton(onPressed: searchAddress, child: const Text("검색")),
+                ElevatedButton(
+                    onPressed: searchAddress, child: const Text("검색")),
               ],
             ),
             const SizedBox(height: 16),
@@ -201,7 +206,8 @@ class _SearchAddressState extends State<SearchAddress> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(e.roadAddr.trim(), style: Theme.of(context).textTheme.titleMedium),
+                          Text(e.roadAddr.trim(),
+                              style: Theme.of(context).textTheme.titleMedium),
                           Text(
                             e.jibunAddr.trim(),
                             style: Theme.of(context).textTheme.labelLarge,
