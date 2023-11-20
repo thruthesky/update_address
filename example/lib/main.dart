@@ -52,15 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   themeData: Theme.of(context).copyWith(
                     colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
                     textTheme: Theme.of(context).textTheme.copyWith(
-                          titleMedium: const TextStyle(color: Colors.red),
+                          titleMedium: const TextStyle(color: Colors.black),
                           labelMedium: const TextStyle(color: Colors.blue),
                         ),
                     inputDecorationTheme: InputDecorationTheme(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
                       isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     ),
                     useMaterial3: true,
                   ),

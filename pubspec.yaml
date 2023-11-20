@@ -1,6 +1,6 @@
 name: find_address
 description: "주소 찾기 (또는 주소 자동 완성) 기능과 주소의 위경도 좌표를 찾는 기능을 제공합니다."
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/thruthesky/update_address
 
 environment:
