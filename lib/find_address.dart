@@ -60,7 +60,7 @@ Future<Map<String, dynamic>?> findAddress(
   final latLon = await getLatLon(kakaoApiKey, addr.roadAddr);
 
   return {
-    'address': addr.roadAddr,
+    'roadAddr': addr.roadAddr,
     'siNm': addr.siNm,
     'sggNm': addr.sggNm,
     'siNmSggNm': '${addr.siNm} ${addr.sggNm}',
