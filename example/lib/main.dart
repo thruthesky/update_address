@@ -56,9 +56,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           labelMedium: const TextStyle(color: Colors.blue),
                         ),
                     inputDecorationTheme: InputDecorationTheme(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16)),
                       isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                     ),
                     useMaterial3: true,
                   ),
