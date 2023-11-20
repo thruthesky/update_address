@@ -71,8 +71,10 @@ Future<Map<String, dynamic>?> findAddress(
   };
 }
 
-Future<({double lat, double lng})?> getLatLon(String kakaoApiKey, String addr) async {
-  String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json?query=$addr";
+Future<({double lat, double lng})?> getLatLon(
+    String kakaoApiKey, String addr) async {
+  String apiUrl =
+      "https://dapi.kakao.com/v2/local/search/address.json?query=$addr";
   final http.Response res = await http.get(
     Uri.parse(apiUrl),
     headers: {"Authorization": "KakaoAK $kakaoApiKey"},
@@ -109,7 +111,8 @@ class _SearchAddressState extends State<SearchAddress> {
   parseAddress(Map<String, dynamic> re) {
     List<Address> address = [];
 
-    final totalCount = int.parse(re['results']['common']['totalCount'].toString());
+    final totalCount =
+        int.parse(re['results']['common']['totalCount'].toString());
     for (int i = 0; i < totalCount; i++) {
       // the maximum you can get from a call is 100.
       if (i >= 100) break;
