@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// Begin custom action code
-// DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -71,10 +69,8 @@ Future<Map<String, dynamic>?> findAddress(
   };
 }
 
-Future<({double lat, double lng})?> getLatLon(
-    String kakaoApiKey, String addr) async {
-  String apiUrl =
-      "https://dapi.kakao.com/v2/local/search/address.json?query=$addr";
+Future<({double lat, double lng})?> getLatLon(String kakaoApiKey, String addr) async {
+  String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json?query=$addr";
   final http.Response res = await http.get(
     Uri.parse(apiUrl),
     headers: {"Authorization": "KakaoAK $kakaoApiKey"},
@@ -83,9 +79,6 @@ Future<({double lat, double lng})?> getLatLon(
   final Map<String, dynamic> result = json.decode(res.body);
 
   if (result['documents'].length == 0) return null;
-
-  print(result['documents'][0]['x']);
-  print(result['documents'][0]['y']);
 
   return (
     lat: double.parse(result['documents'][0]['y']),
@@ -111,8 +104,7 @@ class _SearchAddressState extends State<SearchAddress> {
   parseAddress(Map<String, dynamic> re) {
     List<Address> address = [];
 
-    final totalCount =
-        int.parse(re['results']['common']['totalCount'].toString());
+    final totalCount = int.parse(re['results']['common']['totalCount'].toString());
     for (int i = 0; i < totalCount; i++) {
       // the maximum you can get from a call is 100.
       if (i >= 100) break;
