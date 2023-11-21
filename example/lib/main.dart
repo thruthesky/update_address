@@ -66,15 +66,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   kakaoApiKey: "7c567f8e9e57ffa08531df5aa9efebb5",
                   dataApiKey: "U01TX0FVVEgyMDIzMTExODE5MjMzMDExNDI4ODc=",
                   themeData: Theme.of(context).copyWith(
-                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple.shade300),
+                    colorScheme:
+                        ColorScheme.fromSeed(seedColor: Colors.purple.shade300),
                     textTheme: Theme.of(context).textTheme.copyWith(
                           titleMedium: const TextStyle(color: Colors.black),
                           labelMedium: const TextStyle(color: Colors.blue),
                         ),
                     inputDecorationTheme: InputDecorationTheme(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16)),
                       isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                     ),
                     useMaterial3: true,
                   ),

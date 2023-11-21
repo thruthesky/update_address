@@ -165,6 +165,6 @@ class _SelectSiGunGuState extends State<SelectSiGunGu> {
   onSelectSiGunGu(String? value) {
     selectedSiGunGu = value ?? '';
     setState(() {});
-    widget.onSelected(value);
+    widget.onSelected(siGunGu.firstWhere((e) => e.code == value).name);
   }
 }
