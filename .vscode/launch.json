@@ -10,7 +10,8 @@
             "type": "dart",
             "program": "lib/main.dart",
             "cwd": "example",
-            "flutterMode": "debug"
+            "flutterMode": "debug",
+            "deviceId": "iPhone 15 Pro Max"
         },
         {
             "name": "find_address (profile mode)",

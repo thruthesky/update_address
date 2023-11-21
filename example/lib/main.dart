@@ -43,6 +43,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(32),
+              width: double.infinity,
+              color: Colors.blue.shade100,
+              child: SelectSiGunGu(
+                onSelected: (value) => print(value),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(32),
+              width: double.infinity,
+              color: Colors.orange.shade100,
+              child: SelectSiGunGu.column(
+                onSelected: (value) => print(value),
+              ),
+            ),
             ElevatedButton(
               onPressed: () async {
                 re = await findAddress(
@@ -50,17 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   kakaoApiKey: "7c567f8e9e57ffa08531df5aa9efebb5",
                   dataApiKey: "U01TX0FVVEgyMDIzMTExODE5MjMzMDExNDI4ODc=",
                   themeData: Theme.of(context).copyWith(
-                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple.shade300),
                     textTheme: Theme.of(context).textTheme.copyWith(
                           titleMedium: const TextStyle(color: Colors.black),
                           labelMedium: const TextStyle(color: Colors.blue),
                         ),
                     inputDecorationTheme: InputDecorationTheme(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
                       isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     ),
                     useMaterial3: true,
                   ),
