@@ -87,8 +87,8 @@ ElevatedButton(
   onPressed: () async {
     re = await findAddress(
       context,
-      kakaoApiKey: "7c567f8e9e57ffa08531df5aa9efebb5",
-      dataApiKey: "U01TX0FVVEgyMDIzMTExODE5MjMzMDExNDI4ODc=",
+      kakaoApiKey: "xxxx",
+      dataApiKey: "xxxx",
       themeData: Theme.of(context).copyWith(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         textTheme: Theme.of(context).textTheme.copyWith(
@@ -114,12 +114,33 @@ ElevatedButton(
 
 ### 주소 분류 사용법
 
+도/시/군/구 별로 검색을 하고자 할 때 사용한다.
+
+예를 들면, 중고 장터나 물물 교환 앱을 개발하는데 있어, 내 위치 근처 또는 특정 위치에서 판매하는 물품만 골라 보고 싶다면 도/시/군/구를 선택해서 해당 위치에서 판매하는 물건만 보고 싶은 경우에 사용 할 수 있다. 이 처럼, 주소에서 특정 위치를 도/시/군/구를 찾고자 할 때 사용 할 수 있다.
+
+참고로 이 위젯은 Key 가 필요 없는 공개 API 를 사용하므로, 즉시 사용 가능하다.
+
+
 예제
 
 ```dart
-SelectSiGunGu.column(
-  onSelected: (value) => print(value),
-)
+Container(
+  padding: const EdgeInsets.all(32),
+  width: double.infinity,
+  color: Colors.blue.shade50,
+  child: SelectSiGunGu(
+    onSelected: (value) => print(value),
+  ),
+),
+Container(
+  padding: const EdgeInsets.all(32),
+  width: double.infinity,
+  color: Colors.orange.shade50,
+  child: SelectSiGunGu.column(
+    spacing: 8,
+    onSelected: (value) => print(value),
+  ),
+),
 ```
 
 결과 - onSelected 콜백에 파라메타로 `울산광역시 울주군`, `제주특별자치도 서귀포시` 와 같이 호출된다.

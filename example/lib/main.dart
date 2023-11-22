@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               padding: const EdgeInsets.all(32),
               width: double.infinity,
-              color: Colors.blue.shade100,
+              color: Colors.blue.shade50,
               child: SelectSiGunGu(
                 onSelected: (value) => print(value),
               ),
@@ -54,8 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               padding: const EdgeInsets.all(32),
               width: double.infinity,
-              color: Colors.orange.shade100,
+              color: Colors.orange.shade50,
               child: SelectSiGunGu.column(
+                spacing: 8,
                 onSelected: (value) => print(value),
               ),
             ),

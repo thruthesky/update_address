@@ -15,16 +15,19 @@ class SelectSiGunGu extends StatefulWidget {
     super.key,
     required this.onSelected,
     this.isRow = true,
+    this.spacing = 16,
   }) : isColumn = false;
 
   const SelectSiGunGu.column({
     super.key,
     required this.onSelected,
     this.isColumn = true,
+    this.spacing = 16,
   }) : isRow = false;
 
   final bool isRow;
   final bool isColumn;
+  final double spacing;
 
   final Function(String? name) onSelected;
 
@@ -52,6 +55,13 @@ class _SelectSiGunGuState extends State<SelectSiGunGu> {
         ),
       )
       .toList();
+
+  final boxDecorator = InputDecoration(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+  );
 
   @override
   void initState() {
@@ -88,46 +98,63 @@ class _SelectSiGunGuState extends State<SelectSiGunGu> {
       return Row(
         children: [
           Expanded(
-            flex: 5,
-            child: DropdownButton<String>(
-              isExpanded: true,
-              value: selectedSiDo,
-              items: siDoMenuEntries,
-              onChanged: onSelectSiDo,
-            ),
-          ),
-          const SizedBox(width: 24),
-          if (siGunGu.isNotEmpty)
-            Expanded(
-              flex: 7,
+            child: InputDecorator(
+              decoration: boxDecorator,
               child: DropdownButton<String>(
-                key: ValueKey(selectedSiDo),
-                value: selectedSiGunGu,
-                items: siGunguMenuEntries,
-                onChanged: onSelectSiGunGu,
+                isExpanded: true,
+                value: selectedSiDo,
+                items: siDoMenuEntries,
+                onChanged: onSelectSiDo,
+                underline: const SizedBox.shrink(),
               ),
             ),
+          ),
+          if (siGunGu.isNotEmpty) ...[
+            SizedBox(width: widget.spacing),
+            Expanded(
+              child: InputDecorator(
+                decoration: boxDecorator,
+                child: DropdownButton<String>(
+                  key: ValueKey(selectedSiDo),
+                  isExpanded: true,
+                  value: selectedSiGunGu,
+                  items: siGunguMenuEntries,
+                  onChanged: onSelectSiGunGu,
+                  underline: const SizedBox.shrink(),
+                ),
+              ),
+            ),
+          ]
         ],
       );
     } else if (widget.isColumn) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DropdownButton<String>(
-            isExpanded: true,
-            value: selectedSiDo,
-            items: siDoMenuEntries,
-            onChanged: onSelectSiDo,
-          ),
-          const SizedBox(width: 24),
-          if (siGunGu.isNotEmpty)
-            DropdownButton<String>(
+          InputDecorator(
+            decoration: boxDecorator,
+            child: DropdownButton<String>(
               isExpanded: true,
-              key: ValueKey(selectedSiDo),
-              value: selectedSiGunGu,
-              items: siGunguMenuEntries,
-              onChanged: onSelectSiGunGu,
+              value: selectedSiDo,
+              items: siDoMenuEntries,
+              onChanged: onSelectSiDo,
+              underline: const SizedBox.shrink(),
             ),
+          ),
+          if (siGunGu.isNotEmpty) ...[
+            SizedBox(height: widget.spacing),
+            InputDecorator(
+              decoration: boxDecorator,
+              child: DropdownButton<String>(
+                isExpanded: true,
+                key: ValueKey(selectedSiDo),
+                value: selectedSiGunGu,
+                items: siGunguMenuEntries,
+                onChanged: onSelectSiGunGu,
+                underline: const SizedBox.shrink(),
+              ),
+            ),
+          ]
         ],
       );
     } else {
